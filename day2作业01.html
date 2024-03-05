@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #cls {
+            width: 100px;
+            height: 50px;
+            background-color: #ffffff;
+            border: 1px solid #ccc;
+            margin-right: 20px;
+        }
+
+        #dls {
+            width: 100px;
+            height: 50px;
+            background-color: #ffffff;
+            border: 1px solid #ccc;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="index" style="display: flex;">
+        <div id="cls">
+
+        </div>
+        <div id="dls">
+    
+        </div>
+    </div>
+    <script script="">
+        let cls = document.querySelector('#cls')
+        let dls = document.querySelector('#dls')
+        let colors = ['#ffffff', '#cccccc', 'red', 'blur', 'pink', '#00ff0d']
+        let indes = 0
+        cls.onclick = function () {
+            if (indes > Number(colors.length - 1)) {
+                indes = 0
+            } else {
+                indes++
+            }
+            console.log(indes);
+            cls.style.backgroundColor = colors[indes]
+
+        }
+        dls.onclick = function () {
+            if (indes > Number(colors.length - 1)) {
+                indes = 0
+            } else {
+                indes++
+            }
+            dls.style.backgroundColor = colors[indes]
+        }
+    </script>
+</body>
+
+</html>

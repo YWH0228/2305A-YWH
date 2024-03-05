@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="index">
+        <div class="top">2305A 点名册</div>
+        <div class="time"></div>
+        <div class="content" style="width: 100%;height: calc(100vh - 150px);display: flex;">
+            <ul></ul>
+            <div class="right">
+                <div class="rs" style="width: 100%;height: 400px;margin-top: 200px;color: #fff;">
+                    <div class="title" style="font-weight: bolder;font-size: 18px;padding: 0 20px;color: #fff;">
+                        <span class="sp1" style="font-size: 30px;margin: 0;padding: 0;">选中人员</span>：<div class="sp"
+                            style="margin-top: 20px;height: 50px;line-height: 50px;"></div>
+                    </div>
+                    <div class="bts"
+                        style="width: 100%;padding: 20px;display: flex;justify-content: space-between;margin-top: 20px;">
+                        <button
+                            style="width: 80px;height: 35px;background-color: #1784d8;color: #fff;border: 0;border-radius: 5px;"
+                            class="btn1">选一人</button>
+                        <button
+                            style="width: 80px;height: 35px;background-color: #1784d8;color: #fff;border: 0;border-radius: 5px;"
+                            class="btn2">选两人</button>
+                        <button
+                            style="width: 80px;height: 35px;background-color: #1784d8;color: #fff;border: 0;border-radius: 5px;"
+                            class="btn3">选男生</button>
+                        <button
+                            style="width: 80px;height: 35px;background-color: #1784d8;color: #fff;border: 0;border-radius: 5px;"
+                            class="btn4">选女生</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    //动态时间
+    let time = document.querySelector('.time')
+    function ts() {
+        let times = new Date().toLocaleString()
+        time.innerHTML = times
+    }
+    setInterval(() => {
+        ts()
+    }, 1000);
+    //展示名单效果
+    let uls = document.querySelector('ul')
+    let arr = [
+        { name: '阿真0', code: 1 },
+        { name: '阿真1', code: 1 },
+        { name: '阿真2', code: 1 },
+        { name: '阿真3', code: 1 },
+        { name: '阿真4', code: 1 },
+        { name: '阿真5', code: 1 },
+        { name: '阿真6', code: 1 },
+        { name: '阿真7', code: 1 },
+        { name: '阿真8', code: 1 },
+        { name: '阿真9', code: 1 },
+        { name: '阿龙10', code: 0 },
+        { name: '阿龙11', code: 0 },
+        { name: '阿龙12', code: 0 },
+        { name: '阿龙13', code: 0 },
+        { name: '阿龙14', code: 0 },
+        { name: '阿龙15', code: 0 },
+        { name: '阿龙16', code: 0 },
+        { name: '阿龙17', code: 0 },
+        { name: '阿龙18', code: 0 },
+        { name: '阿龙19', code: 0 },
+        { name: '阿龙20', code: 0 },
+        { name: '阿龙21', code: 0 },
+        { name: '阿龙22', code: 0 },
+        { name: '阿龙23', code: 0 },
+    ]
+    function fn() {
+        let a = ''
+        arr.forEach((item, index) => {
+            // console.log(item.name);
+            a += `<li>${item.name}</li>`
+            uls.innerHTML = a
+        })
+    }
+    fn()
+    // console.log(lis);
+
+    let sp = document.querySelector('.sp')
+    //名称
+    let name = ''
+    let indexs
+    //选一个人
+    let btn1 = document.querySelector('.btn1')
+    btn1.onclick = function () {
+        this.indexs = Math.floor(Math.random() * arr.length)
+        arr.forEach((item, index) => {
+            if (this.indexs == index) {
+                this.name = item.name
+            }
+        })
+        sp.innerHTML = this.name
+    }
+    //选男生
+
+    let btn3 = document.querySelector('.btn3')
+    let i
+    btn3.onclick = function () {
+        let arr1 = arr.filter(item => item.code == 0)
+
+        this.i = Math.floor(Math.random() * arr1.length)
+        console.log(this.i);
+        arr1.forEach((item, index) => {
+            if (this.i == index) {
+                this.name = item.name
+            }
+        })
+        sp.innerHTML = this.name
+        // console.log(this.name);
+    }
+    //选男生
+
+    let btn4 = document.querySelector('.btn4')
+    btn4.onclick = function () {
+        let arr1 = arr.filter(item => item.code == 1)
+
+        this.i = Math.floor(Math.random() * arr1.length)
+        console.log(this.i);
+        arr1.forEach((item, index) => {
+            if (this.i == index) {
+                this.name = item.name
+            }
+        })
+        sp.innerHTML = this.name
+        // console.log(this.name);
+    }
+
+    //选两人
+    let btn2 = document.querySelector('.btn2')
+
+    // console.log(arr2);
+    let i1
+    let i2
+    btn2.onclick = function () {
+        this.i1 = Math.floor(Math.random() * arr.length)
+        this.i2 = Math.floor(Math.random() * arr.length)
+        let arr2 = []
+        if (this.i2 == this.i1) {
+            if (i1 == 0) {
+                i2++
+            } else {
+                i2--
+            }
+        }
+        console.log(this.i1, this.i2);
+        arr.forEach((item, index) => {
+            if (this.i1 == index) {
+                arr2.push(item.name)
+            }
+            if (this.i2 == index) {
+                arr2.push(item.name)
+            }
+        })
+        let a = ''
+        arr2.forEach((item, index) => {
+            a += `<span>${item}</span>`
+        })
+        sp.innerHTML = a
+
+    }
+</script>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .index {
+        width: 100vw;
+        height: 100vh;
+        background-image: url(../day2/v2-817ef51a5a8d4018e9f0724050080ecf_r.jpg);
+        background-size: 100% 100%;
+    }
+
+    .top {
+        width: 100%;
+        height: 100px;
+        /* background-color: aqua; */
+        color: #fff;
+        font-weight: bolder;
+        font-size: 40px;
+        text-align: center;
+        line-height: 100px;
+    }
+
+    .time {
+        width: 100%;
+        height: 50px;
+        text-align: right;
+        padding: 0 20px 0 0;
+        /* background-color: aqua; */
+        line-height: 50px;
+        font-weight: bolder;
+        font-weight: 18px;
+        color: #fff;
+    }
+
+    ul {
+        width: 70%;
+        /* height: 100%; */
+        padding: 20px;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    li {
+        width: 100px;
+        height: 50px;
+        list-style: none;
+        line-height: 50px;
+        text-align: center;
+        margin: 0 10px;
+        border-radius: 5px;
+        background-color: #1784d8;
+        color: #fff;
+        text-align: center;
+        background: -webkit-linear-gradient(left, #00ccff, #ffea00 25%, #00ff22 50%, #003cff 75%, #ff0000);
+        color: transparent;
+        background-clip: 0;
+        -webkit-background-clip: text;
+        background-size: 200% 100%;
+        animation: masked-animation 1s infinite linear;
+        font-size: 24px;
+    }
+
+    @keyframes masked-animation {
+        0% {
+            background-position: 0 0;
+        }
+
+        100% {
+            background-position: -100% 0;
+        }
+    }
+
+    .right {
+        width: 30%;
+        height: 100%;
+        /* background-color: aqua; */
+    }
+
+    span {
+        margin: 0;
+        padding: 0;
+        margin-right: 20px;
+    }
+
+    .sp {
+        background: -webkit-linear-gradient(left, #00ccff, #ffea00 25%, #00ff22 50%, #003cff 75%, #ff0000);
+        color: transparent;
+        background-clip: 0;
+        -webkit-background-clip: text;
+        background-size: 200% 100%;
+        animation: masked-animation 1s infinite linear;
+        font-size: 24px;
+    }
+
+    .sp1 {
+        background: -webkit-linear-gradient(left, #00ccff, #ffea00 25%, #00ff22 50%, #003cff 75%, #ff0000);
+        color: transparent;
+        background-clip: 0;
+        -webkit-background-clip: text;
+        background-size: 200% 100%;
+        animation: masked-animation 1s infinite linear;
+        font-size: 24px;
+    }
+</style>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    function fn() {
+        console.log(this, '15');
+    }
+    let fns = () => {
+        console.log(this, '18');
+    }
+    let obj = {
+        name: '阿龙',
+        say: function () {
+            console.log(this, '20');
+            // fn()
+            fns()
+        }
+    }
+    // call 方法
+    obj.say()
+    fn.call(obj)
+    //apply方法
+    fn.apply(obj)
+    // bind方法
+    let binds = fn.bind(obj, '123456')
+    binds()
+    obj.say()
+
+</script>
+
+</html>
